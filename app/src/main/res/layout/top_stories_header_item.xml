@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <data>
+        <variable
+            name="onClickListener"
+            type="com.addodevelop.exclusivenews.top_stories.TopStoriesClickListener" />
+        <variable
+            name="newsItem"
+            type="com.addodevelop.exclusivenews.network.NewsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" >
+
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:setOnClickListener="@{onClickListener}"
+            app:setNewsItem="@{newsItem}"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/news_image_bg"
+            android:contentDescription="@string/news_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setNewsImage="@{newsItem}"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/publisherBanner"
+            android:maxLines="1"
+            android:maxLength="15"
+            android:ellipsize="end"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/top_stories_header_banner_bg"
+            android:elevation="3dp"
+            android:fontFamily="@font/roboto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/top_stories" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:maxLines="1"
+            android:ellipsize="end"
+            setNewsTitle="@{newsItem}"
+            android:maxLength="35"
+            android:background="@drawable/text_blur_bg"
+            android:id="@+id/newsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/newsImage"
+            app:layout_constraintEnd_toEndOf="@+id/newsImage"
+            app:layout_constraintStart_toStartOf="@+id/newsImage"
+            tools:text="United win the PL for the 21st Time" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

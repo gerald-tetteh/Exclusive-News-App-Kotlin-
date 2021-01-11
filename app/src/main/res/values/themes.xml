@@ -13,4 +13,26 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.NoAppBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/grey_darken_4</item>
+        <item name="colorPrimaryVariant">@color/grey_darken_3</item>
+
+        <item name="colorSecondary">@color/amber</item>
+
+        <item name="android:statusBarColor" tools:targetApi="1" >?attr/colorPrimaryVariant</item>
+
+        <!--  TextStyles  -->
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <!--  TabView Theme  -->
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="materialThemeOverlay">@style/Theme.Tap.Style</item>
+    </style>
+    <style name="Theme.Tap.Style" parent="">
+        <item name="colorSurface">@color/grey_darken_4</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+    </style>
 </resources>

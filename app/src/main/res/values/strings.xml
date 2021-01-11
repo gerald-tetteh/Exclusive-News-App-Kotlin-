@@ -1,3 +1,50 @@
 <resources>
+
+    <!-- Tab Names  -->
     <string name="app_name">ExclusiveNews</string>
+    <string name="top_stories">Top Stories</string>
+    <string name="categories">Categories</string>
+    <string name="sources">Sources</string>
+    <string name="saved">Saved</string>
+
+    <!--  Content Descriptions  -->
+    <string name="selectCountryCD">This button is used to open a modal sheet to select a country to query the API</string>
+    <string name="country_flag">Country Flag</string>
+    <string name="news_image">Thumbnail for news item</string>
+    <string name="loading_icon">Icon showing network status</string>
+    <string name="save_icon">Icon used to save news Items</string>
+
+    <!--  Countries  -->
+    <string name="uae">United Arab Emirates</string>
+    <string name="argentina">Argentina</string>
+    <string name="austria">Austria</string>
+    <string name="australia">Australia</string>
+    <string name="belgium">Belgium</string>
+    <string name="brazil">Brazil</string>
+    <string name="canada">Canada</string>
+    <string name="china">China</string>
+    <string name="germany">Germany</string>
+    <string name="uk">United Kingdom</string>
+    <string name="usa">United States</string>
+
+    <!-- Categories  -->
+    <string name="business">business</string>
+    <string name="entertainment">entertainment</string>
+    <string name="general">general</string>
+    <string name="health">health</string>
+    <string name="science">science</string>
+    <string name="sports">sports</string>
+    <string name="technology">technology</string>
+
+    <!--  Shared Preference Names  -->
+    <string name="country_iso_key">com.addodevelop.exclusive.COUNTRY_ISO_KEY</string>
+
+    <!--  General Text  -->
+    <string name="select_a_country">Select a Country</string>
+    <string name="unknown">Unknown</string>
+    <string name="details_unavailable">Details coming soon.</string>
+    <string name="view_article">View Full Article</string>
+    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias fugiat incidunt perspiciatis quos, soluta vitae voluptas? A accusamus ad adipisci, aliquam aperiam at, consequuntur culpa delectus dolores dolorum ducimus enim error esse eum facilis harum illo itaque laudantium libero maxime modi nam natus nisi non odit placeat quaerat quibusdam quisquam quod rem similique tempora temporibus unde ut velit veritatis vero. At autem consectetur consequuntur enim et illo incidunt laudantium, pariatur repellendus repudiandae tempora temporibus, tenetur totam. Adipisci beatae cupiditate eaque eos explicabo harum in ipsa ipsam nemo nulla odio porro praesentium qui, quos ratione reprehenderit rerum sint? Esse, nulla.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
