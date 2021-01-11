@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.addodevelop.exclusivenews.home_page.HomePageFragment"
+        android:label="home_page_fragment"
+        tools:layout="@layout/home_page_fragment" >
+        <action
+            android:id="@+id/action_homePageFragment_to_countryBottomSheetFragment"
+            app:destination="@id/countryBottomSheetFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/countryBottomSheetFragment"
+        tools:layout="@layout/fragment_country_bottom_sheet"
+        android:name="com.addodevelop.exclusivenews.countries.CountryBottomSheetFragment"
+        android:label="CountryBottomSheetFragment" >
+        <action
+            android:id="@+id/action_countryBottomSheetFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.addodevelop.exclusivenews.news_detail.NewsDetailFragment"
+        android:label="news_detail_fragment"
+        tools:layout="@layout/news_detail_fragment" >
+        <argument
+            android:name="newsItem"
+            app:argType="com.addodevelop.exclusivenews.network.NewsItem" />
+        <action
+            android:id="@+id/action_newsDetailFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/action_newsDetailFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        tools:layout="@layout/fragment_web_view"
+        android:name="com.addodevelop.exclusivenews.web_view.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument
+            android:name="articleUrl"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_webViewFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+
+</navigation>
