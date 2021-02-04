@@ -49,4 +49,5 @@
     <string name="item_saved">Item Saved</string>
     <string name="undo">UNDO</string>
     <string name="saved_item_removed">Saved Item Removed</string>
+    <string name="no_saved_items">Nothing here yet.</string>
 </resources>

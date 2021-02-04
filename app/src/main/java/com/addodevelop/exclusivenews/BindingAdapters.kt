@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -15,6 +16,7 @@ import com.addodevelop.exclusivenews.network.NetWorkStatus
 import com.addodevelop.exclusivenews.network.NewsItem
 import com.addodevelop.exclusivenews.saved.SavedAdapter
 import com.addodevelop.exclusivenews.saved.SavedClickListener
+import com.addodevelop.exclusivenews.saved.SavedLongClickListener
 import com.addodevelop.exclusivenews.top_stories.TopStoriesAdapter
 import com.addodevelop.exclusivenews.top_stories.TopStoriesClickListener
 import com.bumptech.glide.Glide
@@ -199,10 +201,29 @@ fun bindSavedClickListener(cardView: MaterialCardView, savedClickListener: Saved
     }
 }
 
+@BindingAdapter(value = ["setItemToDelete","setLongPressListener"])
+fun bindSavedLongClickListener(cardView: MaterialCardView,newsItem: NewsItem?, savedLongClickListener: SavedLongClickListener) {
+    newsItem?.let { item ->
+        cardView.setOnLongClickListener {
+            savedLongClickListener.onLongClick(item)
+            true
+        }
+    }
+}
+
 @BindingAdapter("setSavedProgress")
 fun binsSavedProgress(progressBar: ProgressBar, status: Boolean) {
     when (status) {
         true -> progressBar.visibility = View.GONE
         false -> progressBar.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter("setSavedPlaceHolder")
+fun bindSavedPlaceHolder(constraintLayout: ConstraintLayout, newsItems: List<NewsItem>?) {
+    when {
+        newsItems == null -> constraintLayout.visibility = View.VISIBLE
+        newsItems.isEmpty() -> constraintLayout.visibility = View.VISIBLE
+        newsItems.isNotEmpty() -> constraintLayout.visibility = View.GONE
     }
 }

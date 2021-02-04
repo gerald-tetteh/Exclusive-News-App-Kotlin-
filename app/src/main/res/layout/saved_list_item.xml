@@ -11,6 +11,9 @@
         <variable
             name="newsItem"
             type="com.addodevelop.exclusivenews.network.NewsItem" />
+        <variable
+            name="savedLongClickedListener"
+            type="com.addodevelop.exclusivenews.saved.SavedLongClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +24,8 @@
             android:id="@+id/cardListItem"
             app:setSavedOnClick="@{savedClickListener}"
             app:setSavedNewsItem="@{newsItem}"
+            app:setItemToDelete="@{newsItem}"
+            app:setLongPressListener="@{savedLongClickedListener}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
