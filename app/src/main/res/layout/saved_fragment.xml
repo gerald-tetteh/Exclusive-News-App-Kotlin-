@@ -43,6 +43,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noItemsView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:setSavedPlaceHolder="@{viewModel.newsItems}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/save_icon"
+                app:layout_constraintBottom_toBottomOf="@id/noItemsView"
+                app:layout_constraintEnd_toEndOf="@id/noItemsView"
+                app:layout_constraintStart_toStartOf="@id/noItemsView"
+                app:layout_constraintTop_toTopOf="@id/noItemsView"
+                app:srcCompat="@drawable/ic_download"
+                app:tint="@color/amber" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/no_saved_items"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="@id/noItemsView"
+                app:layout_constraintEnd_toEndOf="@id/noItemsView"
+                app:layout_constraintStart_toStartOf="@id/noItemsView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

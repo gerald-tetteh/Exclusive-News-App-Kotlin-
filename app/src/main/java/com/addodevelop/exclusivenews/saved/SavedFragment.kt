@@ -36,6 +36,8 @@ class SavedFragment : Fragment() {
                 HomePageFragmentDirections.actionHomePageFragmentToNewsDetailFragment(newsItem),
                 extras
             )
+        }, SavedLongClickListener { newsItem ->
+            context?.let { viewModel.showDeleteAlert(it,newsItem) }
         })
         return binding.root
     }

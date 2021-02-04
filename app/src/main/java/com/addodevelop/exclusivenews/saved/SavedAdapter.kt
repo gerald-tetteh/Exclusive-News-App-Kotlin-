@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SavedAdapter(private val savedClickListener: SavedClickListener): ListAdapter<NewsItem,SavedAdapter.SavedItemViewHolder>(SavedDiffUtil()) {
+class SavedAdapter(private val savedClickListener: SavedClickListener, private val onSavedLongClickListener: SavedLongClickListener): ListAdapter<NewsItem,SavedAdapter.SavedItemViewHolder>(SavedDiffUtil()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
 
@@ -32,16 +32,21 @@ class SavedAdapter(private val savedClickListener: SavedClickListener): ListAdap
     }
 
     override fun onBindViewHolder(holder: SavedItemViewHolder, position: Int) {
-        holder.bind(getItem(position), savedClickListener)
+        holder.bind(getItem(position), savedClickListener, onSavedLongClickListener)
     }
 
     class SavedItemViewHolder private constructor(val binding: SavedListItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(newsItem: NewsItem, savedClickListener: SavedClickListener) {
+        fun bind(
+            newsItem: NewsItem,
+            savedClickListener: SavedClickListener,
+            onSavedLongClickListener: SavedLongClickListener
+        ) {
             ViewCompat.setTransitionName(binding.cardListItem, "id_saved_${newsItem.title}")
             binding.newsItem = newsItem
             binding.savedClickListener = savedClickListener
+            binding.savedLongClickedListener = onSavedLongClickListener
             binding.executePendingBindings()
         }
 
@@ -57,6 +62,9 @@ class SavedAdapter(private val savedClickListener: SavedClickListener): ListAdap
 
 class SavedClickListener(val onClickListener: (view: View, newsItem: NewsItem) -> Unit) {
     fun onClick(view: View, newsItem: NewsItem) = onClickListener(view, newsItem)
+}
+class SavedLongClickListener(val onLongClickListener: (newsItem: NewsItem) -> Unit) {
+    fun onLongClick(newsItem: NewsItem) = onLongClickListener(newsItem)
 }
 
 class SavedDiffUtil: DiffUtil.ItemCallback<NewsItem>() {

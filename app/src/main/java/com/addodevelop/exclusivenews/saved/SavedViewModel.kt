@@ -1,5 +1,7 @@
 package com.addodevelop.exclusivenews.saved
 
+import android.app.AlertDialog
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -33,6 +35,21 @@ class SavedViewModel(private val databaseDao: NewsDatabaseDao) : ViewModel() {
                 _itemDeleted.value = false
             }
         }
+    }
+    fun onDoneDeleting() {
+        _itemDeleted.value = false
+    }
+
+    fun showDeleteAlert(context: Context, newsItem: NewsItem) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Delete News Item")
+        builder.setMessage("Are you sure you want to delete this item ?")
+        builder.setPositiveButton("YES") { _, _ ->
+            deleteItem(newsItem)
+            onDoneDeleting()
+        }
+        builder.setNegativeButton("CANCEL",null)
+        builder.show()
     }
 
     override fun onCleared() {
