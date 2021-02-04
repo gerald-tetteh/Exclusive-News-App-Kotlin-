@@ -1,7 +1,42 @@
 package com.addodevelop.exclusivenews.saved
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.addodevelop.exclusivenews.network.NewsItem
+import com.addodevelop.exclusivenews.news_database.NewsDatabaseDao
+import kotlinx.coroutines.*
+import java.lang.Exception
 
-class SavedViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class SavedViewModel(private val databaseDao: NewsDatabaseDao) : ViewModel() {
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    val newsItems = databaseDao.getNewsItems()
+
+    private val _itemDeleted = MutableLiveData<Boolean>()
+    val itemDeleted: LiveData<Boolean>
+        get() = _itemDeleted
+    val databaseStatus = Transformations.map(newsItems) { newsItems ->
+        newsItems != null
+    }
+
+    fun deleteItem(newsItem: NewsItem) {
+        uiScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    databaseDao.deleteItem(newsItem.title)
+                }
+                _itemDeleted.value = true
+            } catch (e: Exception) {
+                _itemDeleted.value = false
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        uiScope.cancel()
+    }
 }

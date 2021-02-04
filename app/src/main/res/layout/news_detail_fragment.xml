@@ -6,9 +6,6 @@
 
     <data>
         <variable
-            name="newsItem"
-            type="com.addodevelop.exclusivenews.network.NewsItem" />
-        <variable
             name="viewModel"
             type="com.addodevelop.exclusivenews.news_detail.NewsDetailViewModel" />
     </data>
@@ -49,7 +46,7 @@
                     android:id="@+id/authorText"
                     android:maxLines="1"
                     android:maxLength="25"
-                    app:setNewsAuthor="@{newsItem}"
+                    app:setNewsAuthor="@{viewModel.newsItem}"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
@@ -84,7 +81,7 @@
 
                 <TextView
                     android:id="@+id/newsTitle"
-                    app:setNewsTitle="@{newsItem}"
+                    app:setNewsTitle="@{viewModel.newsItem}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -103,7 +100,7 @@
                     android:id="@+id/newsContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:setNewsContent="@{newsItem}"
+                    app:setNewsContent="@{viewModel.newsItem}"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
@@ -137,6 +134,7 @@
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.saveNewsItem()}"
             android:baselineAlignBottom="false"
             android:layout_marginEnd="16dp"
             app:fabSize="normal"

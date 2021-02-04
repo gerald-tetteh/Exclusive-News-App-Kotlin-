@@ -6,15 +6,19 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.addodevelop.exclusivenews.countries.Country
 import com.addodevelop.exclusivenews.network.NetWorkStatus
 import com.addodevelop.exclusivenews.network.NewsItem
+import com.addodevelop.exclusivenews.saved.SavedAdapter
+import com.addodevelop.exclusivenews.saved.SavedClickListener
 import com.addodevelop.exclusivenews.top_stories.TopStoriesAdapter
 import com.addodevelop.exclusivenews.top_stories.TopStoriesClickListener
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 import kotlin.random.Random
 
 private val badgeColors = listOf(
@@ -22,7 +26,11 @@ private val badgeColors = listOf(
     R.color.blue_grey_darken_4,
     R.color.teal_200,
     R.color.purple_700,
-    R.color.black
+    R.color.black,
+    android.R.color.holo_purple,
+    android.R.color.holo_red_dark,
+    android.R.color.holo_green_dark,
+    android.R.color.holo_orange_dark
 )
 
 private fun checkString(context: Context, text: String?): String {
@@ -40,7 +48,7 @@ private fun checkString(context: Context, text: String?): String {
 }
 
 private fun pickBgColor(): Int {
-    val index = Random.nextInt(0,5)
+    val index = Random.nextInt(0,9)
     return badgeColors[index]
 }
 
@@ -101,7 +109,7 @@ fun bindNewsListItems(recyclerView: RecyclerView,newsItems: List<NewsItem>?) {
 @BindingAdapter("setPublisherBanner")
 fun bindPublisherBanner(textView: TextView, newsItem: NewsItem?) {
     textView.text = checkString(textView.context,newsItem?.source?.name)
-    textView.setBackgroundColor(pickBgColor())
+    textView.setBackgroundColor(ContextCompat.getColor(textView.context,pickBgColor()))
 }
 
 //sets news title
@@ -129,7 +137,9 @@ fun bindNewsContent(textView: TextView, newsItem: NewsItem?) {
 //sets news author
 @BindingAdapter("setNewsAuthor")
 fun bindNewsAuthor(textView: TextView, newsItem: NewsItem?) {
-    textView.text = checkString(textView.context,newsItem?.author)
+    val text = checkString(textView.context,newsItem?.author)
+    textView.text = if (text == textView.context.getString(R.string.unknown))
+        textView.context.getString(R.string.unknown_author) else text
 }
 
 // sets network icon visibility
@@ -171,5 +181,28 @@ fun bindOnClickListener(imageView: ImageView, topStoriesClickListener: TopStorie
         imageView.setOnClickListener {
             topStoriesClickListener.onClick(it, newsItem)
         }
+    }
+}
+
+@BindingAdapter("setSavedListItems")
+fun bindSavedListItems(recyclerView: RecyclerView,newsItems: List<NewsItem>?) {
+    val adapter = recyclerView.adapter as SavedAdapter
+    adapter.addItems(newsItems)
+}
+
+@BindingAdapter(value = ["setSavedOnClick","setSavedNewsItem"])
+fun bindSavedClickListener(cardView: MaterialCardView, savedClickListener: SavedClickListener, newsItem: NewsItem?) {
+    newsItem?.let {
+        cardView.setOnClickListener { card ->
+            savedClickListener.onClick(card, it)
+        }
+    }
+}
+
+@BindingAdapter("setSavedProgress")
+fun binsSavedProgress(progressBar: ProgressBar, status: Boolean) {
+    when (status) {
+        true -> progressBar.visibility = View.GONE
+        false -> progressBar.visibility = View.VISIBLE
     }
 }

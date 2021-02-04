@@ -45,6 +45,8 @@
     <string name="details_unavailable">Details coming soon.</string>
     <string name="view_article">View Full Article</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias fugiat incidunt perspiciatis quos, soluta vitae voluptas? A accusamus ad adipisci, aliquam aperiam at, consequuntur culpa delectus dolores dolorum ducimus enim error esse eum facilis harum illo itaque laudantium libero maxime modi nam natus nisi non odit placeat quaerat quibusdam quisquam quod rem similique tempora temporibus unde ut velit veritatis vero. At autem consectetur consequuntur enim et illo incidunt laudantium, pariatur repellendus repudiandae tempora temporibus, tenetur totam. Adipisci beatae cupiditate eaque eos explicabo harum in ipsa ipsam nemo nulla odio porro praesentium qui, quos ratione reprehenderit rerum sint? Esse, nulla.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unknown_author">Unknown Author</string>
+    <string name="item_saved">Item Saved</string>
+    <string name="undo">UNDO</string>
+    <string name="saved_item_removed">Saved Item Removed</string>
 </resources>

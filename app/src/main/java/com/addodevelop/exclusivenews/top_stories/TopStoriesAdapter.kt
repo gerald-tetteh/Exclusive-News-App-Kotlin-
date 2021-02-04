@@ -137,11 +137,11 @@ sealed class DataItem {
 
     data class NewsGridItem(val newsItem: NewsItem): DataItem() {
         override val id: String
-            get() = newsItem.title!!
+            get() = newsItem.title
     }
 
     data class NewsGridHeader(val newsItem: NewsItem): DataItem() {
         override val id: String
-            get() = newsItem.title!!
+            get() = newsItem.title
     }
 }
