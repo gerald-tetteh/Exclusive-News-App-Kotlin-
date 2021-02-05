@@ -14,3 +14,4 @@
 .cxx
 local.properties
 /app/src/main/java/com/addodevelop/exclusivenews/apik_keys
+/app/src/main/java/com/addodevelop/exclusivenews/ApiKeys.kt

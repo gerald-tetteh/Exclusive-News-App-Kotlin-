@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.addodevelop.exclusivenews.R
+import com.addodevelop.exclusivenews.apiKey
 import com.addodevelop.exclusivenews.network.NetWorkStatus
 import com.addodevelop.exclusivenews.network.NewsApi
 import com.addodevelop.exclusivenews.network.NewsItem
@@ -38,7 +39,7 @@ class TopStoriesViewModel(private val sharedPreferences: SharedPreferences, appl
             _networkStatus.value = NetWorkStatus.LOADING
             val country = sharedPreferences.getString(getApplication<Application>().getString(R.string.country_iso_key),"us")
             try {
-                val jsonNewsItem = NewsApi.retrofitService.getHeadlines(country!!, "eca173c8bb0445f384b7b0deae3533cb")
+                val jsonNewsItem = NewsApi.retrofitService.getHeadlines(country!!, apiKey)
                 _newsItems.value = jsonNewsItem.articles
                 _networkStatus.value = NetWorkStatus.DONE
             } catch (e: Exception) {

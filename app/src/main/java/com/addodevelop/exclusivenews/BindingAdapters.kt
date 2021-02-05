@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.addodevelop.exclusivenews.countries.Country
 import com.addodevelop.exclusivenews.network.NetWorkStatus
 import com.addodevelop.exclusivenews.network.NewsItem
+import com.addodevelop.exclusivenews.network.SourceItem
 import com.addodevelop.exclusivenews.saved.SavedAdapter
 import com.addodevelop.exclusivenews.saved.SavedClickListener
 import com.addodevelop.exclusivenews.saved.SavedLongClickListener
@@ -226,4 +227,14 @@ fun bindSavedPlaceHolder(constraintLayout: ConstraintLayout, newsItems: List<New
         newsItems.isEmpty() -> constraintLayout.visibility = View.VISIBLE
         newsItems.isNotEmpty() -> constraintLayout.visibility = View.GONE
     }
+}
+
+@BindingAdapter("setPublisherName")
+fun bindPublisherName(textView: TextView, sourceItem: SourceItem?) {
+    textView.text = checkString(textView.context,sourceItem?.name)
+}
+
+@BindingAdapter("setSourceDescription")
+fun bindSourceDescription(textView: TextView, sourceItem: SourceItem?) {
+    textView.text = checkString(textView.context,sourceItem?.description)
 }
