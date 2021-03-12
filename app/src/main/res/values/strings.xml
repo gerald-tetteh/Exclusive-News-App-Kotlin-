@@ -50,4 +50,5 @@
     <string name="undo">UNDO</string>
     <string name="saved_item_removed">Saved Item Removed</string>
     <string name="no_saved_items">Nothing here yet.</string>
+    <string name="visit_page">Visit Web page</string>
 </resources>
