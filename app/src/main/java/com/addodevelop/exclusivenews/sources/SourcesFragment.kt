@@ -1,5 +1,6 @@
 package com.addodevelop.exclusivenews.sources
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +14,20 @@ class SourcesFragment : Fragment() {
     companion object {
         fun newInstance() = SourcesFragment()
     }
-    val viewModel: SourcesViewModel by lazy {
-        ViewModelProvider(this).get(SourcesViewModel::class.java)
-    }
 
     private lateinit var binding: SourcesFragmentBinding
+    private lateinit var viewModel: SourcesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = SourcesFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        val sourcesViewModelFactory = SourcesViewModelFactory(requireActivity().getPreferences(Context.MODE_PRIVATE),requireActivity().application)
+        viewModel = ViewModelProvider(this,sourcesViewModelFactory).get(SourcesViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.sourcesRecyclerView.adapter = SourcesAdapter()
         return binding.root
     }
 

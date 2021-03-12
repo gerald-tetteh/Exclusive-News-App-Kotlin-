@@ -18,6 +18,7 @@ import com.addodevelop.exclusivenews.network.SourceItem
 import com.addodevelop.exclusivenews.saved.SavedAdapter
 import com.addodevelop.exclusivenews.saved.SavedClickListener
 import com.addodevelop.exclusivenews.saved.SavedLongClickListener
+import com.addodevelop.exclusivenews.sources.SourcesAdapter
 import com.addodevelop.exclusivenews.top_stories.TopStoriesAdapter
 import com.addodevelop.exclusivenews.top_stories.TopStoriesClickListener
 import com.bumptech.glide.Glide
@@ -237,4 +238,10 @@ fun bindPublisherName(textView: TextView, sourceItem: SourceItem?) {
 @BindingAdapter("setSourceDescription")
 fun bindSourceDescription(textView: TextView, sourceItem: SourceItem?) {
     textView.text = checkString(textView.context,sourceItem?.description)
+}
+
+@BindingAdapter("setSourceItems")
+fun bindSourceItems(recyclerView: RecyclerView,sourceItems: List<SourceItem>?) {
+    val adapter  = recyclerView.adapter as SourcesAdapter
+    adapter.submitList(sourceItems)
 }
